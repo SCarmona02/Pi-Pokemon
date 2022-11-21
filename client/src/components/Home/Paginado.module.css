@@ -1,0 +1,18 @@
+.liNumber {
+    display: inline-block;
+    margin: 0.3em;
+}
+
+.paginado {
+    padding: 0.5em;
+    background-color: #263238;
+    color: #fff;
+    border-radius: 2em;
+}
+
+.paginado:hover {
+    padding: 0.5em;
+    background-color: #fff;
+    color: #263238;
+    border-radius: 2em;
+}

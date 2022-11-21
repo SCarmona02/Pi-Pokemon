@@ -1,0 +1,27 @@
+.imagePoke {
+    width: 17em;
+    height: 15.5em;
+}
+
+.cardContainer {
+    display: inline-block;
+    margin: 1.5em;
+    padding: 2em;
+    width: 19em;
+    background-color: rgba(68, 68, 68, 0.7);
+    border-radius: 2em;
+    text-decoration: none;
+    color: #fff
+}
+
+.cardContainer:hover {
+    display: inline-block;
+    margin: 1.5em;
+    padding: 2em;
+    width: 19em;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 2em;
+    text-decoration: none;
+    color: #fff
+
+}

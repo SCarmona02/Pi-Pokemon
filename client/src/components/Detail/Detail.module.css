@@ -1,0 +1,42 @@
+.backimage{
+    font-size: 1.5em;
+    background-image: url("http://i.imgur.com/SYY2mJz.png");
+    background-size:cover ;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     width: 100%;
+     height: auto;
+    color: #fff
+}
+
+
+.imagePoke {
+    width: 17em;
+    height: 15.5em;
+}
+
+.cardContainer {
+    display: inline-block;
+    margin: 1.5em;
+    padding: 2em;
+    width: 19em;
+    background-color: rgba(68, 68, 68, 0.7);
+    border-radius: 2em;
+    text-decoration: none;
+    color: #fff
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 2em;
+    border-radius: 2em;
+    border: none;
+}
+
+.button:hover {
+    background-color: #4f5b62;
+    color:#fff;
+    transition: all 0.3s;
+}
+

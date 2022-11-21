@@ -1,0 +1,27 @@
+.backimage{
+    display: flex;
+    font-size: 2.5em;
+    background-image: url("https://i.pinimg.com/736x/d0/c4/b5/d0c4b5e43a432c09f42ca183470075ba.jpg");
+    background-size:cover ;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     width: 100%;
+     height: 100vh;
+    align-items:center;
+    justify-content:center;
+    color: #fff
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 2em;
+    border-radius: 2em;
+    border: none;
+}
+
+.button:hover {
+    background-color: #4f5b62;
+    color:#fff;
+    transition: all 0.3s;
+}
