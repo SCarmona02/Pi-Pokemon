@@ -149,12 +149,12 @@ module.exports = {
 
             body.name = body.name.toLowerCase();
             const findPokemon = await Pokemon.findByPk(id);
-            await findPokemon.update(body, {where: {id:id}})
+            await findPokemon.update(body, { where: { id: id } })
             const typeDb = await Type.findAll({
                 where: { name: types },
-              });
-      
-              await findPokemon.setTypes(typeDb);
+            });
+
+            await findPokemon.setTypes(typeDb);
 
             return ('Pokemon updated!');
 
@@ -164,7 +164,7 @@ module.exports = {
 
     deletePokemon: async function (id) {
         const pokemonDelete = await Pokemon.findByPk(id);
-        if(!pokemonDelete) {
+        if (!pokemonDelete) {
             throw new Error(`Pokemon with id ${id} doesn't exist`)
         } else {
             pokemonDelete.destroy();

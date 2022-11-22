@@ -44,21 +44,21 @@ router.post("/", async (req, res) => {
 
 router.put("/edit/:id", async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const update = await pokeFunctions.editPokemon(id, req.body)
         return res.send(update)
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 });
 
 router.delete("/delete/:id", async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     try {
         const pokemonDelete = await pokeFunctions.deletePokemon(id);
         return res.send(pokemonDelete);
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(400).json({ error: error.message })
     }
 });
 

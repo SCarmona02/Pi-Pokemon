@@ -34,27 +34,27 @@ const Detail = (props) => {
             <div className={style.backimage}>
                 <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink><br />
                 <div className={style.cardContainer}>
-                <div>
-                <img className={style.imagePoke} src={pokemon.image} alt={pokemon.name} /><br />
-                </div>
-                <span>Name: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</span><br />
-                <span>HP: {pokemon.hp}</span><br />
-                <span>Attack: {pokemon.attack}</span><br />
-                <span>Defense: {pokemon.defense}</span><br />
-                <span>Speed: {pokemon.speed}</span><br />
-                <span>Height: {pokemon.height}</span><br />
-                <span>Weight: {pokemon.weight}</span><br />
-                <span>Types: {pokemon.types.map(type => {
-                    return <div key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</div>
-                })}
-                </span>
+                    <div>
+                        <img className={style.imagePoke} src={pokemon.image} alt={pokemon.name} /><br />
+                    </div>
+                    <span>Name: {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</span><br />
+                    <span>HP: {pokemon.hp}</span><br />
+                    <span>Attack: {pokemon.attack}</span><br />
+                    <span>Defense: {pokemon.defense}</span><br />
+                    <span>Speed: {pokemon.speed}</span><br />
+                    <span>Height: {pokemon.height}</span><br />
+                    <span>Weight: {pokemon.weight}</span><br />
+                    <span>Types: {pokemon.types.map(type => {
+                        return <div key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</div>
+                    })}
+                    </span>
                 </div>
                 {pokemon.createdInDb && (
                     <div>
                         <NavLink to={`/pokemons/edit/${props.match.params.id}`}><button className={style.button}>Edit Pokemon</button></NavLink>
                         <button className={style.button} onClick={event => handlerDelete(event)}>Delete Pokemon</button>
                     </div>
-                )} 
+                )}
             </div>
         )
     } else {

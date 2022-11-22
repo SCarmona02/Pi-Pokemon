@@ -3,7 +3,7 @@
     background-color: rgba(68, 68, 68, 0.7);
     display: flex;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
 }
 
 .input {
@@ -37,7 +37,7 @@
 .divHome {
     display: flex;
     justify-content: left;
-    
+
 }
 
 .goHome:hover {

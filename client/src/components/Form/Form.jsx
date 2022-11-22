@@ -124,10 +124,10 @@ const Form = () => {
     return (
         <div className={style.backimage}>
             <div className={style.forNav}>
-            <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink>
+                <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink>
             </div>
             <form onSubmit={(event) => submitHandler(event)} className={style.form}>
-            <h2>Blow your mind!</h2>
+                <h2>Blow your mind!</h2>
                 <div>
                     <label htmlFor="name">Name: <span className={style.aste}>*</span></label>
                     <input className={style.inputs} type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>

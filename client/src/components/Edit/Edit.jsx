@@ -50,7 +50,7 @@ const Edit = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const types = useSelector((state) => state.types);
-    const {id} = useParams();
+    const { id } = useParams();
     const pokemon = useSelector((state) => state.pokemonDetail);
     let typesPokem = [];
     pokemon.types.map(type => typesPokem.push(type.name))
@@ -58,9 +58,9 @@ const Edit = () => {
     const [input, setInput] = useState({
         "name": pokemon.name,
         "types": typesPokem,
-        "hp": pokemon.hp? pokemon.hp : "",
+        "hp": pokemon.hp ? pokemon.hp : "",
         "attack": pokemon.attack ? pokemon.attack : "",
-        "defense": pokemon.defense ? pokemon.defense: "",
+        "defense": pokemon.defense ? pokemon.defense : "",
         "speed": pokemon.speed ? pokemon.speed : "",
         "height": pokemon.height ? pokemon.height : "",
         "weight": pokemon.weight ? pokemon.weight : "",
@@ -76,7 +76,7 @@ const Edit = () => {
 
     const submitHandler = (event) => {
         event.preventDefault()
-        dispatch(editPokemon(pokemon.id,input));
+        dispatch(editPokemon(pokemon.id, input));
         alert("Updated!");
         setInput({
             "name": "",
@@ -128,10 +128,10 @@ const Edit = () => {
     return (
         <div className={style.backimage}>
             <div className={style.forNav}>
-            <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink>
+                <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink>
             </div>
             <form onSubmit={(event) => submitHandler(event)} className={style.form}>
-            <h2>Blow your mind!</h2>
+                <h2>Blow your mind!</h2>
                 <div>
                     <label htmlFor="name">Name: <span className={style.aste}>*</span></label>
                     <input className={style.inputs} type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>

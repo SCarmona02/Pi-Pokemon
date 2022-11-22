@@ -31,18 +31,18 @@ const Navbar = () => {
     return (
         <div>
             <div className={style.navbar}>
-            <div className={style.divHome}>
-            <NavLink to="/"><button className={style.goHome}>Home</button></NavLink>
+                <div className={style.divHome}>
+                    <NavLink to="/"><button className={style.goHome}>Home</button></NavLink>
 
-            </div>
-            <div>
-                <input className={style.input} type="text" id="name" autoComplete="off" value={name.title} onChange={(event) => changeHandler(event)} placeholder="Find your pokemon..." />
-                <button className={style.searchButton} onClick={(event) => submitHandler(event)}>Find it!</button> {/*Puede ser una pokeball */}
-            </div>
-            <div>
-                <NavLink to="/form"><button className={style.goHome}>Create</button></NavLink>
-                <button className={style.goHome} onClick={(event) => reloadHandler(event)}>Reload</button>
-            </div>
+                </div>
+                <div>
+                    <input className={style.input} type="text" id="name" autoComplete="off" value={name.title} onChange={(event) => changeHandler(event)} placeholder="Find your pokemon..." />
+                    <button className={style.searchButton} onClick={(event) => submitHandler(event)}>Find it!</button> {/*Puede ser una pokeball */}
+                </div>
+                <div>
+                    <NavLink to="/form"><button className={style.goHome}>Create</button></NavLink>
+                    <button className={style.goHome} onClick={(event) => reloadHandler(event)}>Reload</button>
+                </div>
             </div>
         </div>
     )

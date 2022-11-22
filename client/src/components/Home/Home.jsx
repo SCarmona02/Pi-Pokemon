@@ -79,27 +79,27 @@ const Home = () => {
             <div className={style.backimage}>
                 <Navbar />
                 <div>
-                <select className={style.selects} onChange={event => handleFilterName(event)} defaultValue="title">
-                    <option value="title" disabled>Order</option>
-                    <option value="def">Random</option>
-                    <option value="asc">A-Z</option>
-                    <option value="des">Z-A</option>
-                    <option value="upForce">Strongest</option>
-                    <option value="downForce">Weakest</option>
-                </select>
-                <select className={style.selects} onChange={event => handleFilterCreated(event)} defaultValue="title">
-                    <option value="title" disabled>Origin</option>
-                    <option value="all">All</option>
-                    <option value="created">Created</option>
-                    <option value="exist">Exist</option>
-                </select>
-                <select className={style.selects} onChange={event => handleFilterType(event)} defaultValue="title">
-                    <option value="title" disabled>Type</option>
-                    <option value="all">All</option>
-                    {types.map(type => {
-                        return <option value={type.name} key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</option>
-                    })}
-                </select>
+                    <select className={style.selects} onChange={event => handleFilterName(event)} defaultValue="title">
+                        <option value="title" disabled>Order</option>
+                        <option value="def">Random</option>
+                        <option value="asc">A-Z</option>
+                        <option value="des">Z-A</option>
+                        <option value="upForce">Strongest</option>
+                        <option value="downForce">Weakest</option>
+                    </select>
+                    <select className={style.selects} onChange={event => handleFilterCreated(event)} defaultValue="title">
+                        <option value="title" disabled>Origin</option>
+                        <option value="all">All</option>
+                        <option value="created">Created</option>
+                        <option value="exist">Exist</option>
+                    </select>
+                    <select className={style.selects} onChange={event => handleFilterType(event)} defaultValue="title">
+                        <option value="title" disabled>Type</option>
+                        <option value="all">All</option>
+                        {types.map(type => {
+                            return <option value={type.name} key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</option>
+                        })}
+                    </select>
                 </div>
                 {currentPokemons.map(pokemon => {
                     return <Card key={pokemon.id} item={pokemon} />
@@ -110,10 +110,10 @@ const Home = () => {
     } else {
         return (
             <>
-            <Navbar />
-            <div className={style.backimageLoading}>
-                <img src="https://media.tenor.com/_3R8EL8_DQYAAAAi/pokeball-pokemon.gif"></img>
-            </div>
+                <Navbar />
+                <div className={style.backimageLoading}>
+                    <img src="https://media.tenor.com/_3R8EL8_DQYAAAAi/pokeball-pokemon.gif"></img>
+                </div>
             </>
         )
     }

@@ -20,11 +20,11 @@ const Error = () => {
     return (
         <div className={style.backimage}>
             <div>
-            <h1>Something went wrong</h1>
-            <span>{error}</span>
-            <div>
-            <button className={style.button} onClick={(event) => submitHandler(event)}>Back</button>
-            </div>
+                <h1>Something went wrong</h1>
+                <span>{error}</span>
+                <div>
+                    <button className={style.button} onClick={(event) => submitHandler(event)}>Back</button>
+                </div>
             </div>
         </div>
 
