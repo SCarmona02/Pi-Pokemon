@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import style from "./Form.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { createPokemon, getAllPokemons, getAllTypes } from "../../redux/actions/actions";
@@ -9,7 +10,7 @@ const validate = (input) => {
         errors.name = "*The pokemon's name is required (3 letters min)"
     }
 
-    if (input.name.length > 2 && ((/[0-9]/).test(input.name) || (/[/_*.:;()+-]/).test(input.name))) {
+    if (input.name.length > 2 && ((/[0-9]/).test(input.name) || (/[/_*#$%&="'@?¿!¡.,:;()+-]/).test(input.name))) {
         errors.name = "*The pokemon's name can't has numbers or special characters"
     }
 
@@ -121,55 +122,57 @@ const Form = () => {
     let buttonDisabled = !(input.name.length) || (errors.name || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.hp || errors.image)
 
     return (
-        <>
-            <NavLink to="/pokemons">Back</NavLink>
-            <h1>Blow your mind!</h1>
-            <form onSubmit={(event) => submitHandler(event)}>
+        <div className={style.backimage}>
+            <div className={style.forNav}>
+            <NavLink to="/pokemons"><button className={style.button}>Back</button></NavLink>
+            </div>
+            <form onSubmit={(event) => submitHandler(event)} className={style.form}>
+            <h2>Blow your mind!</h2>
                 <div>
-                    <label htmlFor="name">Name: </label>
-                    <input type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>
-                    {errors.name && (<p>{errors.name}</p>)}
+                    <label htmlFor="name">Name: <span className={style.aste}>*</span></label>
+                    <input className={style.inputs} type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>
+                    {errors.name && (<p className={style.errors}>{errors.name}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="hp">HP: </label>
-                    <input type='number' value={input.hp} name='hp' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
-                    {errors.hp && (<p>{errors.hp}</p>)}
+                    <input className={style.inputs} type='number' value={input.hp} name='hp' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
+                    {errors.hp && (<p className={style.errors}>{errors.hp}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="attack">Attack: </label>
-                    <input type='number' value={input.attack} name='attack' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
-                    {errors.attack && (<p>{errors.attack}</p>)}
+                    <input className={style.inputs} type='number' value={input.attack} name='attack' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
+                    {errors.attack && (<p className={style.errors}>{errors.attack}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="defense">Defense: </label>
-                    <input type='number' value={input.defense} name='defense' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
-                    {errors.defense && (<p>{errors.defense}</p>)}
+                    <input className={style.inputs} type='number' value={input.defense} name='defense' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
+                    {errors.defense && (<p className={style.errors}>{errors.defense}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="speed">Speed: </label>
-                    <input type='number' value={input.speed} name='speed' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
-                    {errors.speed && (<p>{errors.speed}</p>)}
+                    <input className={style.inputs} type='number' value={input.speed} name='speed' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000"></input>
+                    {errors.speed && (<p className={style.errors}>{errors.speed}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="height">Height: </label>
-                    <input type='number' value={input.height} name='height' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000 (cm)"></input>
-                    {errors.height && (<p>{errors.height}</p>)}
+                    <input className={style.inputs} type='number' value={input.height} name='height' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000 (cm)"></input>
+                    {errors.height && (<p className={style.errors}>{errors.height}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="weight">Weight: </label>
-                    <input type='number' value={input.weight} name='weight' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000 (kg)"></input>
-                    {errors.weight && (<p>{errors.weight}</p>)}
+                    <input className={style.inputs} type='number' value={input.weight} name='weight' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="1 - 1000 (kg)"></input>
+                    {errors.weight && (<p className={style.errors}>{errors.weight}</p>)}
                 </div>
 
                 <div>
                     <label htmlFor="types">Types: </label>
-                    <select onChange={event => handleSelect(event)} name="types" defaultValue="title">
+                    <select className={style.inputs} onChange={event => handleSelect(event)} name="types" defaultValue="title">
                         <option value="title" disabled name="Types">Types</option>
                         {types.map(type => {
                             return <option value={type.name} key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</option>
@@ -182,7 +185,7 @@ const Form = () => {
                         return (
                             <div key={index}>
                                 <span key={type}>{type[0].toUpperCase() + type.slice(1)}</span>
-                                <button name={type} onClick={event => handleDeleteType(event)}>X</button>
+                                <button className={style.buttonDelete} name={type} onClick={event => handleDeleteType(event)}>X</button>
                                 <br />
                             </div>
                         )
@@ -191,13 +194,13 @@ const Form = () => {
 
                 <div>
                     <label htmlFor="image">Image: </label>
-                    <input type='url' value={input.image} name='image' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="URL"></input>
-                    {errors.image && (<p>{errors.image}</p>)}
+                    <input className={style.inputs} type='url' value={input.image} name='image' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="URL"></input>
+                    {errors.image && (<p className={style.errors}>{errors.image}</p>)}
                 </div>
 
-                <button type="submit" disabled={buttonDisabled}>Get it!</button>
+                <button className={style.button} type="submit" disabled={buttonDisabled}>Get it!</button>
             </form>
-        </>
+        </div>
     )
 
 }

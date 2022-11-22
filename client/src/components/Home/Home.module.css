@@ -4,7 +4,8 @@
      background-repeat: no-repeat;
      background-attachment: fixed;
      width: 100%;
-     height: auto;
+     height: 280%;
+     position: absolute;
 }
 
 .selects {

@@ -1,0 +1,69 @@
+.backimage {
+    background-image: url("https://i.gifer.com/Xgd5.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 125%;
+    position: absolute;
+}
+
+.errors {
+    color: red;
+    font-size: 11px;
+    margin: 0.5em;
+}
+
+.form {
+    background-color: #fff;
+    display: inline-block;
+    padding: 1.3em 2em 1.3em 2em;
+    border-radius: 2em;
+    font-size: 1.2em;
+    position: relative;
+    top: -2em
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 2em;
+    border-radius: 2em;
+    border: none;
+    background-color: #999;
+    color: #fff;
+}
+
+.aste {
+    color: red
+}
+
+.buttonDelete {
+    padding: 0.2em;
+    margin: 0.3em;
+    background-color: rgb(250, 76, 76);
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+}
+
+.button:hover {
+    background-color: #27333a;
+    color:#fff;
+    transition: all 0.3s;
+}
+
+.inputs {
+    margin: 0.4em;
+    padding: 0.5em;
+    border: none;
+    background-color: #ebe6e6;
+    border-radius: 2em;
+}
+
+.forNav {
+    display: flex;
+    justify-content: left;
+    margin-top: -1em;
+    margin-left: 1.2em;
+}
