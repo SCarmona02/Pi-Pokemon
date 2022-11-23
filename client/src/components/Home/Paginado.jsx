@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Paginado.module.css"
 
-const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
+const Paginado = ({ pokemonsPerPage, pokemons, paginado, currentPage }) => {
     const pageNumbers = []
 
     for (let i = 1; i <= Math.ceil(pokemons / pokemonsPerPage); i++) {
@@ -11,6 +11,7 @@ const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
     return (
         <nav>
             <ul>
+                {currentPage > 1 && <li className={style.liNumber}><span className={style.paginado} onClick={() => paginado(--currentPage)}>Prev</span></li>}
                 {
                     pageNumbers && pageNumbers.map(number => {
                         return (
@@ -20,6 +21,7 @@ const Paginado = ({ pokemonsPerPage, pokemons, paginado }) => {
                         )
                     })
                 }
+                {currentPage < pageNumbers.length && <li className={style.liNumber}><span className={style.paginado} onClick={() => paginado(++currentPage)}>Next</span></li>}
             </ul>
         </nav>
     )

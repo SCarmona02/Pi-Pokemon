@@ -104,7 +104,7 @@ const Home = () => {
                 {currentPokemons.map(pokemon => {
                     return <Card key={pokemon.id} item={pokemon} />
                 })}
-                <Paginado className={style.paginado} pokemonsPerPage={pokemonsPerPage} pokemons={pokemons.length} paginado={paginado} />
+                <Paginado className={style.paginado} pokemonsPerPage={pokemonsPerPage} currentPage={currentPage} pokemons={pokemons.length} paginado={paginado} />
             </div>
         )
     } else {
