@@ -8,6 +8,15 @@
     position: absolute;
 }
 
+.buttonDelete {
+    padding: 0.2em;
+    margin: 0.3em;
+    background-color: rgb(250, 76, 76);
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+}
+
 .selects {
     background: #263238;
     color: #fff;

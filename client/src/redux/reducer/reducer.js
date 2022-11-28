@@ -2,7 +2,6 @@ import { ERROR, GET_ALL_POKEMONS, GET_POKEMON_DETAIL, GET_POKEMON_QUERY, CREATE_
 
 const initialState = {
     pokemons: [],
-    allPokemons: [],
     types: [],
     pokemonDetail: {},
     error: ""
@@ -15,7 +14,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons: action.payload,
-                allPokemons: action.payload
             };
 
         case GET_POKEMON_DETAIL:
@@ -42,7 +40,7 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case FILTER_BY_NAME:
-            const allPokemonsFN = state.allPokemons
+            const allPokemonsFN = [...state.pokemons]
             const statusFilter = action.payload === "asc" ? allPokemonsFN.sort((a, b) => {
                 if (a.name > b.name) {
                     return 1;
@@ -62,11 +60,12 @@ const rootReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                pokemons: statusFilter
+                pokemons: statusFilter,
+                allPoke: statusFilter
             };
 
         case FILTER_BY_ATTACK:
-            const allPokemonsFA = state.allPokemons
+            const allPokemonsFA = [...state.pokemons]
             const statusFilterFA = action.payload === "upForce" ? allPokemonsFA.sort((a, b) => {
                 if (a.attack > b.attack) {
                     return -1;
@@ -86,11 +85,12 @@ const rootReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                pokemons: statusFilterFA
+                pokemons: statusFilterFA,
+                allPoke: statusFilterFA
             };
 
         case FILTER_CREATED:
-            const allPokemonsFC = state.allPokemons
+            const allPokemonsFC = [...state.pokemons]
             const createdFilter = action.payload === "created" ? allPokemonsFC.filter(pokemon => pokemon.createdInDb) : allPokemonsFC.filter(pokemon => !pokemon.createdInDb)
             return {
                 ...state,
@@ -105,7 +105,7 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case FILTER_BY_TYPE:
-            const allPokemonsFT = state.allPokemons
+            const allPokemonsFT = [...state.pokemons]
             let pokemonByType = []
             allPokemonsFT.forEach(pokemon => pokemon.types.forEach(types => types.name === action.payload ? pokemonByType.push(pokemon) : false))
             return {

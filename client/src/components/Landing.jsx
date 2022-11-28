@@ -21,7 +21,7 @@ const Landing = () => {
                 </div>
 
                 <div className={style.secondContainer}>
-                    <img className={style.gif} src={giftPikachu}></img>
+                    <img className={style.gif} src={giftPikachu} alt="pikachu gif"></img>
                 </div>
             </div>
         </>

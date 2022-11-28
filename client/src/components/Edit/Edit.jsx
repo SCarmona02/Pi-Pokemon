@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from "./Edit.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory, useParams } from "react-router-dom";
-import { editPokemon, getAllPokemons, getAllTypes } from "../../redux/actions/actions";
+import { NavLink, useHistory } from "react-router-dom";
+import { editPokemon, getAllPokemons, getAllTypes, getPokemonQuery, setError, setPoke } from "../../redux/actions/actions";
 
 const validate = (input) => {
     let errors = {};
@@ -50,8 +50,9 @@ const Edit = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const types = useSelector((state) => state.types);
-    const { id } = useParams();
     const pokemon = useSelector((state) => state.pokemonDetail);
+    const findPoke = useSelector(state => state.pokemons);
+    const [loading, setLoading] = useState("")
     let typesPokem = [];
     pokemon.types.map(type => typesPokem.push(type.name))
 
@@ -72,7 +73,8 @@ const Edit = () => {
 
     useEffect(() => {
         dispatch(getAllTypes())
-    }, []);
+        dispatch(setPoke());
+    }, [dispatch]);
 
     const submitHandler = (event) => {
         event.preventDefault()
@@ -93,16 +95,24 @@ const Edit = () => {
         dispatch(getAllPokemons())
     }
 
-    const changeHandler = (event) => {
+    const changeHandler = async (event) => {
         setInput({
             ...input,
             [event.target.name]: event.target.value
         })
-
+        
         setErrors(validate({
             ...input,
             [event.target.name]: event.target.value
         }))
+        
+        if(event.target.name === 'name' && event.target.value !== pokemon.name){
+            await setLoading("Loading");
+            await dispatch(setPoke());
+            await dispatch(getPokemonQuery(event.target.value.toLowerCase()))
+            await dispatch(setError(false));
+            await setLoading("");
+        }
     }
 
     const handleSelect = (event) => {
@@ -123,7 +133,7 @@ const Edit = () => {
         })
     }
 
-    let buttonDisabled = !(input.name.length) || (errors.name || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.hp || errors.image)
+    let buttonDisabled = !(input.name.length) || (errors.name || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.hp || errors.image || findPoke.length || loading === "Loading")
 
     return (
         <div className={style.backimage}>
@@ -135,7 +145,9 @@ const Edit = () => {
                 <div>
                     <label htmlFor="name">Name: <span className={style.aste}>*</span></label>
                     <input className={style.inputs} type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>
+                    {loading === "Loading" && (<p className={style.load}>Loading...</p>)}
                     {errors.name && (<p className={style.errors}>{errors.name}</p>)}
+                    {findPoke.length && input.name.length ? (<p className={style.errors}>This pokemon already exist</p>) : false}
                 </div>
 
                 <div>

@@ -24,6 +24,7 @@ const Navbar = () => {
 
     const reloadHandler = (event) => {
         history.push("/pokemons")
+        window.location.reload();
         dispatch(getAllPokemons());
         setName({ title: "" })
     }

@@ -95,6 +95,13 @@ export const setError = () => {
     }
 };
 
+export const setPoke = () => {
+    return {
+        type: GET_ALL_POKEMONS,
+        payload: []
+    }
+}
+
 export const filterByName = (payload) => {
     return {
         type: FILTER_BY_NAME,

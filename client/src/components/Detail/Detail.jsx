@@ -20,7 +20,7 @@ const Detail = (props) => {
 
     useEffect(() => {
         dispatch(getPokemonDetail(props.match.params.id))
-    }, [dispatch])
+    }, [dispatch, props.match.params.id])
 
     if (error) {
         return (

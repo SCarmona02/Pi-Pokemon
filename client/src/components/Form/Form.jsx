@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./Form.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { createPokemon, getAllPokemons, getAllTypes } from "../../redux/actions/actions";
+import { createPokemon, getAllPokemons, getAllTypes, getPokemonQuery, setError, setPoke } from "../../redux/actions/actions";
 
 const validate = (input) => {
     let errors = {};
@@ -49,6 +49,8 @@ const Form = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const findPoke = useSelector(state => state.pokemons)
+    const [loading, setLoading] = useState("")
     const types = useSelector((state) => state.types)
 
     const [input, setInput] = useState({
@@ -68,7 +70,8 @@ const Form = () => {
 
     useEffect(() => {
         dispatch(getAllTypes())
-    }, []);
+        dispatch(setPoke());
+    }, [dispatch]);
 
     const submitHandler = (event) => {
         event.preventDefault()
@@ -89,7 +92,7 @@ const Form = () => {
         dispatch(getAllPokemons())
     }
 
-    const changeHandler = (event) => {
+    const changeHandler = async (event) => {
         setInput({
             ...input,
             [event.target.name]: event.target.value
@@ -99,6 +102,14 @@ const Form = () => {
             ...input,
             [event.target.name]: event.target.value
         }))
+
+        if(event.target.name === 'name'){
+            await setLoading("Loading");    
+            await dispatch(setPoke());        
+            await dispatch(getPokemonQuery(event.target.value.toLowerCase()))
+            await dispatch(setError(false));
+            await setLoading("");
+        }
     }
 
     const handleSelect = (event) => {
@@ -119,7 +130,7 @@ const Form = () => {
         })
     }
 
-    let buttonDisabled = !(input.name.length) || (errors.name || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.hp || errors.image)
+    let buttonDisabled = !(input.name.length) || (errors.name || errors.attack || errors.defense || errors.speed || errors.height || errors.weight || errors.hp || errors.image || findPoke.length || loading === "Loading")
 
     return (
         <div className={style.backimage}>
@@ -131,7 +142,9 @@ const Form = () => {
                 <div>
                     <label htmlFor="name">Name: <span className={style.aste}>*</span></label>
                     <input className={style.inputs} type='text' value={input.name} name='name' autoComplete="off" onChange={(event) => changeHandler(event)} placeholder="Name"></input>
+                    {loading === "Loading" && (<p className={style.load}>Loading...</p>)}
                     {errors.name && (<p className={style.errors}>{errors.name}</p>)}
+                    {findPoke.length && input.name.length ? (<p className={style.errors}>This pokemon already exist</p>) : false}
                 </div>
 
                 <div>
