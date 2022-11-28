@@ -117,7 +117,7 @@ module.exports = {
             const newPokemon = await Pokemon.create(body)
             if (types) {
                 types.forEach(async type => {
-                    let responseFromDB = await Type.findAll();
+                    let responseFromDB = await Type.findAll()
                     responseFromDB.find(element => element.name == type ? newPokemon.addTypes(element.id) : false)
                 })
 
