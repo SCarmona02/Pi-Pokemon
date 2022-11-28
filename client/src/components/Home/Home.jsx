@@ -12,7 +12,7 @@ const Home = () => {
     const error = useSelector(state => state.error);
     const pokemons = useSelector(state => state.pokemons);
     const types = useSelector(state => state.types);
-    const [selectType, setSelectType] = useState({ type:[] });
+    const [selectType, setSelectType] = useState({ type: [] });
     const [orden, setOrden] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const pokemonsPerPage = 12;
@@ -83,7 +83,7 @@ const Home = () => {
             setOrden("Sin orden");
         }
 
-        if(orden.length < 0){
+        if (orden.length < 0) {
             setOrden("")
         }
     }
@@ -121,15 +121,15 @@ const Home = () => {
                         })}
                     </select>
                     <div className={style.selects}>
-                    {selectType.type?.map((type, index) => {
-                        return (
-                            <div key={index}>
-                                <span key={type}>{type[0].toUpperCase() + type.slice(1)}</span>
-                                <button className={style.buttonDelete} name={type} onClick={event => handleDeleteType(event)}>X</button>
-                            </div>
-                        )
-                    })}
-                </div>
+                        {selectType.type?.map((type, index) => {
+                            return (
+                                <div key={index}>
+                                    <span key={type}>{type[0].toUpperCase() + type.slice(1)}</span>
+                                    <button className={style.buttonDelete} name={type} onClick={event => handleDeleteType(event)}>X</button>
+                                </div>
+                            )
+                        })}
+                    </div>
 
                 </div>
                 {currentPokemons.map(pokemon => {
