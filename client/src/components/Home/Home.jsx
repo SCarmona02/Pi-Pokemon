@@ -12,7 +12,7 @@ const Home = () => {
     const error = useSelector(state => state.error);
     const pokemons = useSelector(state => state.pokemons);
     const types = useSelector(state => state.types);
-    const [selectType, setSelectType] = useState({ type: [] });
+    const [selectType, setSelectType] = useState({ type: [], exist: [] });
     const [orden, setOrden] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const pokemonsPerPage = 12;
@@ -36,6 +36,11 @@ const Home = () => {
     const handleFilterCreated = (event) => {
         event.preventDefault();
         dispatch(filterCreated(event.target.value))
+
+        setSelectType({
+            ...selectType,
+            exist: [event.target.value]
+        })
     }
 
     const handleFilterType = (event) => {
@@ -47,6 +52,7 @@ const Home = () => {
         }
 
         setSelectType({
+            ...selectType,
             type: [event.target.value]
         })
     }
@@ -54,13 +60,15 @@ const Home = () => {
     const handleDeleteType = (event) => {
         event.preventDefault();
         setSelectType({
-            type: []
+            type: [],
+            exist: []
         })
         window.location.reload();
         dispatch(getAllPokemons())
     }
 
     let selectDisabled = (!!selectType.type.length);
+    let selectDisabledEx = (!!selectType.exist.length);
 
     const handleFilterName = (event) => {
         if (event.target.value === "asc" || event.target.value === "des") {
@@ -91,7 +99,7 @@ const Home = () => {
     if (error) {
         return (
             <>
-                <Error></Error>
+                <Error setSelectType={setSelectType}></Error>
             </>
         )
     } else if (pokemons.length) {
@@ -107,12 +115,22 @@ const Home = () => {
                         <option value="upForce">Strongest</option>
                         <option value="downForce">Weakest</option>
                     </select>
-                    <select className={style.selects} onChange={event => handleFilterCreated(event)} defaultValue="title">
+                    <select disabled={selectDisabledEx} className={style.selects} onChange={event => handleFilterCreated(event)} defaultValue="title">
                         <option value="title" disabled>Origin</option>
                         <option value="all">All</option>
                         <option value="created">Created</option>
                         <option value="exist">Exist</option>
                     </select>
+                        {selectType.exist?.map((exist, index) => {
+                            return (
+                                <div className={style.selects}>
+                                <div key={index}>
+                                    <span key={exist}>{exist[0].toUpperCase() + exist.slice(1)}</span>
+                                    <button className={style.buttonDelete} name={exist} onClick={event => handleDeleteType(event)}>X</button>
+                                </div>
+                    </div>
+                            )
+                        })}
                     <select disabled={selectDisabled} className={style.selects} onChange={event => handleFilterType(event)} defaultValue="title">
                         <option value="title" disabled>Type</option>
                         <option value="all">All</option>
@@ -120,16 +138,16 @@ const Home = () => {
                             return <option value={type.name} key={type.id}>{type.name[0].toUpperCase() + type.name.slice(1)}</option>
                         })}
                     </select>
-                    <div className={style.selects}>
                         {selectType.type?.map((type, index) => {
                             return (
+                                <div className={style.selects}>
                                 <div key={index}>
                                     <span key={type}>{type[0].toUpperCase() + type.slice(1)}</span>
                                     <button className={style.buttonDelete} name={type} onClick={event => handleDeleteType(event)}>X</button>
                                 </div>
+                    </div>
                             )
                         })}
-                    </div>
 
                 </div>
                 {currentPokemons.map(pokemon => {

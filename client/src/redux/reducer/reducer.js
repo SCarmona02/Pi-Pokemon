@@ -61,7 +61,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons: statusFilter,
-                allPoke: statusFilter
             };
 
         case FILTER_BY_ATTACK:
@@ -86,7 +85,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pokemons: statusFilterFA,
-                allPoke: statusFilterFA
             };
 
         case FILTER_CREATED:

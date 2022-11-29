@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { getAllPokemons, setError } from "../../redux/actions/actions";
 
 
-const Error = () => {
+const Error = ({setSelectType}) => {
     const error = useSelector(state => state.error);
     const dispatch = useDispatch();
     const history = useHistory()
@@ -14,6 +14,7 @@ const Error = () => {
         history.push("/pokemons")
         event.preventDefault();
         dispatch(getAllPokemons());
+        setSelectType({ type: [], exist: []})
         dispatch(setError(false));
     };
 
