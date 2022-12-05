@@ -177,8 +177,7 @@ module.exports = {
 
             await Type.sync({ force: true });
             let responseFromAPI = await axios.get(typeApi);
-            let array = responseFromAPI.data.results
-            console.log(array);
+            let array = [...responseFromAPI.data.results]
             let allUrlsAPIToPromises = array.map((type) => axios.get(type.url));
 
             await axios.all(allUrlsAPIToPromises).then((url) => {
